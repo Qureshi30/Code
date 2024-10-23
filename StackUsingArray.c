@@ -1,3 +1,9 @@
+// Write a menu driven program to implement STACK ADT using array and perform the
+// following operations
+// 1. PUSH
+// 2. POP
+// 3. DISPLAY
+// 4. COUNT
 #include <stdio.h>
 #include <stdlib.h>
 

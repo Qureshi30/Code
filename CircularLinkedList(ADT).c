@@ -1,3 +1,16 @@
+// Write a menu driven program to implement list ADT using CIRCULAR LINKEDLIST
+// and perform the following operations
+// 1. CREATE
+// 2. INSERT AT BEGINNING
+// 3. INSERT AT END
+// 4. INSERT AT LOCATION
+// 5. DELETE AT BEGINNING
+// 6. DELETE AT END
+// 7. DELETE AT LOCATION
+// 8. DISPLAY
+// 9. SEARCH
+// 10. COUNT
+// 11. REVERSE
 #include <stdio.h>
 #include <stdlib.h>
 

@@ -135,32 +135,42 @@ void delete_at_end()
 }
 
 // Delete at a specific position
-void delete_at_anypoint(int p)
+void deleteAtPosition(int position)
 {
+    // Check if the list is empty
     if (list == NULL)
     {
         printf("List is empty\n");
         return;
     }
-    if (p == 1)
+
+    // If deleting the first node
+    if (position == 1)
     {
-        delete_at_beg();
+        delete_at_beg(); // Call function to delete the first node
         return;
     }
-    struct node *temp = list;
-    for (int i = 1; i < p - 1 && temp != NULL; i++)
+
+    struct node *current = list;  // Start from the head of the list
+    struct node *previous = NULL; // To keep track of the previous node
+
+    // Traverse the list to find the node before the specified position
+    for (int i = 1; i < position && current != NULL; i++)
     {
-        temp = temp->next;
+        previous = current;      // Move previous to current node
+        current = current->next; // Move to the next node
     }
-    if (temp != NULL && temp->next != NULL)
+
+    // Check if the current node is not NULL (valid position)
+    if (current != NULL)
     {
-        struct node *dn = temp->next;
-        temp->next = dn->next;
-        freenode(dn);
+        previous->next = current->next; // Link the previous node to the next node
+        freenode(current);              // Free the memory of the deleted node
+        printf("Node at position %d deleted\n", position);
     }
     else
     {
-        printf("Position out of bounds\n");
+        printf("Position out of bounds\n"); // Position is invalid
     }
 }
 
@@ -261,7 +271,7 @@ int main()
         case 6:
             printf("Enter the position to delete: ");
             scanf("%d", &pos);
-            delete_at_anypoint(pos);
+            deleteAtPosition(pos);
             break;
         case 7:
             display();
