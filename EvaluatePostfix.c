@@ -19,75 +19,72 @@ int isEmpty()
     return top == -1;
 }
 
-char pop()
-{
+int pop()
+{ // Changed return type to int
     if (isEmpty())
     {
-        return -1;
+        printf("Error: Stack Underflow\n");
+        exit(1); // Exit the program in case of stack underflow
     }
-    char ch = stack[top];
-    top--;
-    return (ch);
-
-    // return stack[top--];
+    return stack[top--];
 }
 
-void push(char ch)
-{
+void push(int val)
+{ // Changed argument type to int
     if (isFull())
     {
-        printf("\nStack Overflow\n");
+        printf("Error: Stack Overflow\n");
     }
     else
     {
-        top++;
-        stack[top] = ch;
-
-        // stack[++top] = ch;
+        stack[++top] = val;
     }
 }
 
 void evaluate_postfix(char *postfix)
 {
     int val;
-
     int i = 0;
 
     while (postfix[i] != '\0')
     {
         if (isdigit(postfix[i]))
         {
-
-            push(postfix[i] - '0');
+            push(postfix[i] - '0'); // Push the integer value of the digit
         }
         else
         {
             int num1 = pop();
             int num2 = pop();
 
-            if (postfix[i] == '+')
+            switch (postfix[i])
             {
-                val = num1 + num2;
-                push(val);
-            }
-            else if (postfix[i] == '-')
-            {
+            case '+':
+                val = num2 + num1;
+                break;
+            case '-':
                 val = num2 - num1;
-                push(val);
-            }
-            else if (postfix[i] == '*')
-            {
-                val = num1 * num2;
-                push(val);
-            }
-            else if (postfix[i] == '/')
-            {
+                break;
+            case '*':
+                val = num2 * num1;
+                break;
+            case '/':
+                if (num1 == 0)
+                {
+                    printf("Error: Division by zero\n");
+                    return;
+                }
                 val = num2 / num1;
-                push(val);
+                break;
+            default:
+                printf("Error: Invalid operator\n");
+                return;
             }
+            push(val);
         }
         i++;
     }
+
     printf("Final Answer = %d\n", pop());
 }
 
