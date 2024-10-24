@@ -1,6 +1,5 @@
 // Write a program to REVERSE a given string using a Stack
 #include <stdio.h>
-#include <string.h>
 
 #define MAX 100 // Maximum size for the stack
 
@@ -9,7 +8,13 @@ void reverseString(char str[])
 {
     char stack[MAX];
     int top = -1;
-    int len = strlen(str);
+    int len = 0;
+
+    // Manually calculate the length of the string
+    while (str[len] != '\0')
+    {
+        len++;
+    }
 
     // Push all characters of the string onto the stack
     for (int i = 0; i < len; i++)
